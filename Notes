@@ -8,3 +8,16 @@ Get-Process artax-backend | Stop-Process
 
 Get-Item .\dist\app.exe
 Remove-Item .\dist\app.exe
+
+
+service creation
+
+powershell -NoProfile -ExecutionPolicy Bypass -File D:\ARTAXv7-200.6\Backend-200\scripts\build-service-win.ps1
+
+sc.exe create ARTAX200 binPath= "D:\ARTAXv7-200.6\dist\ARTAX-200-Service.exe" DisplayName= "ARTAX 200 Service" start= auto
+
+sc.exe start ARTAX200
+
+Get-Service ARTAX200
+
+
