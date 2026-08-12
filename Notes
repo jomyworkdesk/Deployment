@@ -1,0 +1,10 @@
+Start-Process -FilePath ".\artax-backend.exe" -WorkingDirectory "." -WindowStyle Hidden
+
+Get-Process artax-backend
+
+Get-Process artax-backend | Stop-Process
+
+
+
+Get-Item .\dist\app.exe
+Remove-Item .\dist\app.exe
