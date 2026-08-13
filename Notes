@@ -1,4 +1,4 @@
--- Background Running 
+# --- Background Running 
 
 Start-Process -FilePath ".\ARTAX-200.exe" -WorkingDirectory "." -WindowStyle Hidden
 
@@ -7,8 +7,10 @@ Get-Process ARTAX-200
 Get-Process ARTAX-200 | Stop-Process
 
 
+#  --- FIND AND DELETE ITEM
 
 Get-Item .\ARTAX-200.exe
+
 Remove-Item .\ARTAX-200.exe
 
 
