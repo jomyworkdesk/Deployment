@@ -1,0 +1,68 @@
+Since Node.js works in Command Prompt but not in the VS Code PowerShell terminal on your Windows Server 2012 R2, the likely issue is that VS Code is not picking up the Node.js PATH environment variable, or PowerShell is resolving `npm` differently.
+
+Let's fix it step by step.
+
+## Step 1: Check Node.js inside VS Code
+
+Open the VS Code terminal (\`Ctrl + \`\`) and run:
+
+```
+$env:Path -split ';' | Select-String -Pattern 'nodejs'
+```
+
+Then run:
+
+```
+where.exe node
+where.exe npm
+```
+
+## Step 2: Test Node.js using its full path
+
+Run this in the VS Code PowerShell terminal:
+
+```
+& "C:\Program Files\nodejs\node.exe" -v
+```
+
+And test npm:
+
+```
+& "C:\Program Files\nodejs\npm.cmd" -v
+```
+
+If Node.js is installed in a different folder, use the path shown by `where node` in Command Prompt.
+
+## Step 3: Refresh VS Code's environment
+
+1. Close all VS Code windows.
+2. Open Command Prompt.
+3. Launch VS Code from that Command Prompt:
+
+```
+code .
+```
+
+4. Open a new PowerShell terminal in VS Code.
+5. Test again:
+
+```
+node -v
+npm.cmd -v
+```
+
+This can help if VS Code was opened before Node.js was installed or before PATH was updated.
+
+## Step 4: If it still doesn't work
+
+Please run these two commands in VS Code's PowerShell terminal and send me their output:
+
+```
+Get-Command node -All
+```
+
+```
+$env:Path
+```
+
+I can identify whether this is a PATH issue or a PowerShell command-resolution issue and give you the exact fix.
